@@ -14,17 +14,6 @@ git clone https://github.com/nishagrewal/fisher_to_contour.git
 cd fisher_to_contour
 ```
 
-3. Create an environment: 
-```
-conda create --name fisher_to_contour python=3.9.7 numpy matplotlib
-
-```
-
-4. Activate environment:
-```
-conda activate fisher_to_contour
-```
-
 Tip: If you are using VSCode, you can enable autosaving by going to *File* -> *Auto Save*
 
 
