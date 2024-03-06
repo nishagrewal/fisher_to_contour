@@ -22,7 +22,7 @@ class CosmoFisher:
         
         Returns
         -------
-        array
+        matrix : array
             Fisher matrix with rows and columns removed for marginalised parameters
         '''
         p_list = list(self.cosmo_params.keys())
@@ -32,6 +32,14 @@ class CosmoFisher:
 
 
     def fisher_inverse_covariance(self):
+        '''
+        Return the inverse of the Fisher matrix, then removing the marginalised parameters.
+
+        Returns
+        -------
+        inv_cov_rm : array
+            Inverse of the Fisher matrix covariance
+        '''
         inv_cov = np.linalg.inv(self.fisher_matrix) 
         inv_cov_rm = self.remove_marginalised_params(inv_cov, [self.p1,self.p2])
         return inv_cov_rm
@@ -39,7 +47,7 @@ class CosmoFisher:
 
     def ellipse(self, nstd=1, **kwargs):
         '''
-        Create an ellipse from the Fisher matrix, centered at the best fit values of the parameters.
+        Create an ellipse centered at the best fit values of the parameters.
         Note: this only works for 2 parameters.
         
         Parameters
@@ -51,14 +59,13 @@ class CosmoFisher:
         
         Returns
         -------
-        Ellipse
+        ellipse : Ellipse
             Ellipse object
-        list
+        center : list
             Center of the ellipse
-        list
+        stdv : list
             Standard deviation for each parameter
         '''
-
 
         # center of ellipse
         center = [self.cosmo_params[self.p1]['value'], self.cosmo_params[self.p2]['value']]
@@ -79,6 +86,27 @@ class CosmoFisher:
 
 
     def S8_ellipse(self, alpha=0.5, nstd=1, **kwargs):
+        '''
+        Create an Omega_m-S_8 ellipse centered at the best fit values of the parameters.
+
+        Parameters
+        ----------
+        alpha : float
+            Power law index
+        nstd : float
+            Number of standard deviations to use for the ellipse size
+        kwargs : dict
+            Keyword arguments for the Ellipse object
+        
+        Returns
+        -------
+        ellipse : Ellipse
+            Ellipse object
+        center : list
+            Center of the ellipse
+        stdv : list
+            Standard deviation for each parameter
+        '''
 
         if 'Om' not in self.cosmo_params or 's8' not in self.cosmo_params:
             raise ValueError('Om and s8 must be in the cosmo_params dictionary')
