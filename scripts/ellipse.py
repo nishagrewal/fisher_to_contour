@@ -12,7 +12,6 @@ class CosmoFisher:
     def remove_marginalised_params(self, matrix, p_keep):
         '''
         Remove rows and columns from the Fisher matrix corresponding to the parameters that have been marginalised over.
-        (This works for any number of desired parameters)
         
         Parameters
         ----------
@@ -39,6 +38,28 @@ class CosmoFisher:
 
 
     def ellipse(self, nstd=1, **kwargs):
+        '''
+        Create an ellipse from the Fisher matrix, centered at the best fit values of the parameters.
+        Note: this only works for 2 parameters.
+        
+        Parameters
+        ----------
+        nstd : float
+            Number of standard deviations to use for the ellipse size
+        kwargs : dict
+            Keyword arguments for the Ellipse object
+        
+        Returns
+        -------
+        Ellipse
+            Ellipse object
+        list
+            Center of the ellipse
+        list
+            Standard deviation for each parameter
+        '''
+
+
         # center of ellipse
         center = [self.cosmo_params[self.p1]['value'], self.cosmo_params[self.p2]['value']]
 
