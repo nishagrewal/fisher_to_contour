@@ -5,7 +5,7 @@ class CosmoFisher:
     def __init__(self, p1, p2, fisher_matrix, cosmo_params):
         self.p1 = p1
         self.p2 = p2
-        self.fisher_matrix = fisher_matrix #calc_fisher_all(self.p_list, method, name, path)
+        self.fisher_matrix = fisher_matrix 
         self.cosmo_params = cosmo_params # must be a dictionary with keys 'value' and 'label'?
 
 
