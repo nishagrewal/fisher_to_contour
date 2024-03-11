@@ -118,7 +118,7 @@ class CosmoFisher:
         M = np.array([[1, 0],
                     [-alpha * (s8 / Om), (0.3 / Om) ** alpha]])    # transformation matrix
 
-        # get Om-s8 maatrix
+        # get Om-s8 matrix
         f_inv = self.fisher_inverse_covariance()
         f = np.linalg.inv(f_inv) 
 
