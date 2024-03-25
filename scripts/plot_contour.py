@@ -3,8 +3,36 @@ import matplotlib.pyplot as plt
 from scripts.ellipse import CosmoFisher
 from scipy.stats import norm
 
-
 def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, label=None, dash=False, shade=False):
+    '''
+    Plot the 1-sigma contour for two parameters.
+
+    Parameters
+    ----------
+    p1 : str
+        Name of the first cosmological parameter
+    p2 : str
+        Name of the second cosmological parameter
+    fisher_matrix : array
+        Fisher matrix
+    cosmo_params : dict
+        Dictionary of cosmological parameters with keys 'value' and 'label'
+    axs : array (optional)
+        Array of matplotlib axes
+    color : array (optional)
+        Color of the ellipse   
+    label : str (optional)
+        Label for the ellipse
+    dash : bool (optional)
+        Whether to plot the ellipse as dashed
+    shade : bool (optional)
+        Whether to shade the ellipse
+    
+    Returns
+    -------
+    axs : array
+        Array of matplotlib axes
+    '''
 
     ellip, center, stdv = CosmoFisher(p1, p2, fisher_matrix, cosmo_params).ellipse()
 
