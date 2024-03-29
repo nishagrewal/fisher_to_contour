@@ -1,17 +1,12 @@
 # fisher_to_contour
-Convert a fisher matrix to an ellipse and plot as contour.
+Make a contour plot from fisher matrices (as seen in [Grewal et al 2024](https://arxiv.org/pdf/2402.13912.pdf))
 
 
 ## Installation
 
-1. Clone the repository: 
+Clone the repository: 
 ```
 git clone https://github.com/nishagrewal/fisher_to_contour.git
-```
-
-2. Navigate to the project directory: 
-```
-cd fisher_to_contour
 ```
 
 Tip: If you are using VSCode, you can enable autosaving by going to *File* -> *Auto Save*.

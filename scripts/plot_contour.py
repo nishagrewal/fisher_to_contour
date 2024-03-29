@@ -34,7 +34,10 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         Array of matplotlib axes
     '''
 
-    ellip, center, stdv = CosmoFisher(p1, p2, fisher_matrix, cosmo_params).ellipse()
+    if p1 == 'Om' and p2 == 'S8':
+        ellip, center, stdv = CosmoFisher(p1, p2, fisher_matrix, cosmo_params).S8_ellipse()
+    else:
+        ellip, center, stdv = CosmoFisher(p1, p2, fisher_matrix, cosmo_params).ellipse()
 
     if axs is None:
 
