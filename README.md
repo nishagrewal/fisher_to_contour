@@ -22,11 +22,12 @@ Tip: If you are using VSCode, you can enable autosaving by going to *File* -> *A
 
 **Optional:**
 
-* To make an $\Omega_m$-$S_8$ contour plot:
-    * ensure $\Omega_m$ and $\sigma_8$ are in the cosmo_params dictionary
+* To make an $\Omega_m$ - $S_8$ contour plot:
+    * ensure $\Omega_m$ and $\sigma_8$ are in the `cosmo_params` dictionary
     * set `p1='Om'` and `p2='S8'`
 * Contour colours can be reconfigured in config.py
 
+![Contour Plot](/Users/nishagrewal/fisher_to_contour/contour_plot_Om_s8.png)
 
 ## Contributing
 
