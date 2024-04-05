@@ -22,11 +22,12 @@ Tip: If you are using VSCode, you can enable autosaving by going to *File* -> *A
 
 **Optional:**
 
-* To make an $\Omega_m$-$S_8$ contour plot:
-    * ensure $\Omega_m$ and $\sigma_8$ are in the cosmo_params dictionary
+* To make an $\Omega_m$ - $S_8$ contour plot:
+    * ensure $\Omega_m$ and $\sigma_8$ are in the `cosmo_params` dictionary
     * set `p1='Om'` and `p2='S8'`
 * Contour colours can be reconfigured in config.py
 
+![Contour Plot](contour_plot_Om_s8.png)
 
 ## Contributing
 
@@ -38,4 +39,3 @@ Feel free to contribute by opening an issue or submitting a pull request.
 The ellipse calculation follows in [Coe 2009](https://arxiv.org/pdf/0906.4123.pdf), with one exception in the marginalisation procedure in Section 3.1: the inverse of the Fisher matrix is taken, ***then*** marginalised parameters are removed.
 
 The $S_8$ calculation is done following Appendix A from [Euclid preparation XXVIII. Forecasts for ten different higher-order weak lensing statistics](https://www.aanda.org/articles/aa/full_html/2023/07/aa46017-23/aa46017-23.html#R20).
-
