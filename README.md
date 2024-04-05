@@ -1,6 +1,7 @@
 # fisher_to_contour
 Make a contour plot from fisher matrices (as seen in [Grewal et al 2024](https://arxiv.org/pdf/2402.13912.pdf))
 
+<img src="contour_plot_Om_s8.png" alt="Contour Plot" width="600" height="600">
 
 ## Installation
 
@@ -27,7 +28,6 @@ Tip: If you are using VSCode, you can enable autosaving by going to *File* -> *A
     * set `p1='Om'` and `p2='S8'`
 * Contour colours can be reconfigured in config.py
 
-<img src="contour_plot_Om_s8.png" alt="Contour Plot" width="600" height="450">
 
 ## Contributing
 
