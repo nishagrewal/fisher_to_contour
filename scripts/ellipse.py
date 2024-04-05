@@ -6,7 +6,13 @@ class CosmoFisher:
         self.p1 = p1
         self.p2 = p2
         self.fisher_matrix = fisher_matrix 
-        self.cosmo_params = cosmo_params # must be a dictionary with keys 'value' and 'label'?
+        self.cosmo_params = cosmo_params
+
+        if self.p1 not in self.cosmo_params or self.p2 not in self.cosmo_params:
+            raise ValueError('p1 and p2 must be in the cosmo_params dictionary')
+        for key in self.cosmo_params:
+            if 'value' not in self.cosmo_params[key] or 'label' not in self.cosmo_params[key]:
+                raise ValueError('cosmo_params must have keys "value" and "label"')
 
 
     def remove_marginalised_params(self, matrix, p_keep):

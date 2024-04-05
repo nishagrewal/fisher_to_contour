@@ -1,7 +1,49 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scripts.ellipse import CosmoFisher
+from matplotlib import rc
 from scipy.stats import norm
+
+from scripts.ellipse import CosmoFisher
+from scripts.config import cosmo_params, recon_colors
+
+rc('text', usetex=True)
+rc('font', family='serif')
+rc('xtick', labelsize=16)
+rc('ytick', labelsize=16)
+
+
+def contour_plot(p1, p2, fisher_matrix_list, labels_list, save_fig=False, fig_name='contour_plot.pdf'):
+    """
+    Plot the 2D contour plot of the Fisher matrix for the two parameters p1 and p2.
+
+    Parameters
+    ----------
+    p1 : int
+        Index of the first parameter in the Fisher matrix.
+    p2 : int
+        Index of the second parameter in the Fisher matrix.
+    fisher_matrix_list : list
+        List of Fisher matrices.
+    labels_list : list
+        List of labels for the Fisher matrices.
+    save_fig : bool, optional
+        Save the figure. The default is False.
+    fig_name : str, optional
+        Name of the figure. The default is 'contour_plot.pdf'.
+    """
+
+    if len(fisher_matrix_list) != len(labels_list):
+        raise ValueError('fisher_matrix_list and labels_list must have the same length')
+    
+    for index, fisher_matrix in enumerate(fisher_matrix_list):
+        if index==0:
+            axs = plot_ellipse(p1, p2, fisher_matrix, cosmo_params, color=recon_colors[index], label=labels_list[index])
+        else:
+            plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=axs, color=recon_colors[index], label=labels_list[index])
+
+    if save_fig:
+        plt.savefig(fig_name)
+
 
 def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, label=None, dash=False, shade=False):
     '''
