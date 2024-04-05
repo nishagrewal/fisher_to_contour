@@ -27,7 +27,7 @@ Tip: If you are using VSCode, you can enable autosaving by going to *File* -> *A
     * set `p1='Om'` and `p2='S8'`
 * Contour colours can be reconfigured in config.py
 
-![Contour Plot](contour_plot_Om_s8.png)
+<img src="contour_plot_Om_s8.png" alt="Contour Plot" width="400" height="300">
 
 ## Contributing
 
