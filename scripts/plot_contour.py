@@ -30,19 +30,27 @@ def contour_plot(p1, p2, fisher_matrix_list, labels_list, save_fig=False, fig_na
         Save the figure. The default is False.
     fig_name : str, optional
         Name of the figure. The default is 'contour_plot.pdf'.
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+        The figure object containing the contour plot.
     """
 
     if len(fisher_matrix_list) != len(labels_list):
         raise ValueError('fisher_matrix_list and labels_list must have the same length')
-    
+
+    fig, axs = None, None
     for index, fisher_matrix in enumerate(fisher_matrix_list):
         if index==0:
-            axs = plot_ellipse(p1, p2, fisher_matrix, cosmo_params, color=recon_colors[index], label=labels_list[index])
+            fig, axs = plot_ellipse(p1, p2, fisher_matrix, cosmo_params, color=recon_colors[index], label=labels_list[index])
         else:
             plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=axs, color=recon_colors[index], label=labels_list[index])
 
-    if save_fig:
-        plt.savefig(fig_name)
+    if save_fig and fig is not None:
+        fig.savefig(fig_name)
+
+    return fig
 
 
 def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, label=None, dash=False, shade=False):
@@ -81,6 +89,7 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
     else:
         ellip, center, stdv = CosmoFisher(p1, p2, fisher_matrix, cosmo_params).ellipse()
 
+    fig = None
     if axs is None:
 
         p1_min = center[0] - 3*stdv[0]
@@ -88,7 +97,7 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         p2_min = center[1] - 3*stdv[1]
         p2_max = center[1] + 3*stdv[1]
 
-        fig, axs = plt.subplots(2,2,figsize=(10,10))
+        fig, axs = plt.subplots(2, 2, figsize=(10, 10))
         fig.delaxes(axs[0,1])
         plt.subplots_adjust(hspace=0, wspace=0)
         axs[1,0].set_xlim(p1_min, p1_max)
@@ -97,7 +106,7 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         axs[1,0].set_ylabel(cosmo_params[p2]['label'], fontsize=25)
 
         # Plot the center of the ellipse
-        axs[1,0].plot(center[0], center[1], 'o',alpha=0.0001)
+        axs[1,0].plot(center[0], center[1], 'o', alpha=0.0001)
         axs[1,0].axvline(center[0], ls='--', color='lightgray')
         axs[1,0].axhline(center[1], ls='--', color='lightgray')
 
@@ -113,11 +122,11 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         x = np.linspace(mu - 10 * sig, mu + 10 * sig, 100)
 
     # Modify properties of the ellipse
-    ellip.set_edgecolor(color+[1.0])
+    ellip.set_edgecolor(color + [1.0])
     ellip.set_linewidth(2) 
     ellip.set_facecolor('none')
     if shade:
-        ellip.set_facecolor(color+[0.3])
+        ellip.set_facecolor(color + [0.3])
     if dash:
         ellip.set_linestyle('dashed')
 
