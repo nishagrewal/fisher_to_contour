@@ -97,7 +97,7 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         p2_min = center[1] - 3*stdv[1]
         p2_max = center[1] + 3*stdv[1]
 
-        fig, axs = plt.subplots(2, 2, figsize=(10, 10))
+        fig, axs = plt.subplots(2,2,figsize=(10,10))
         fig.delaxes(axs[0,1])
         plt.subplots_adjust(hspace=0, wspace=0)
         axs[1,0].set_xlim(p1_min, p1_max)
@@ -106,7 +106,7 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         axs[1,0].set_ylabel(cosmo_params[p2]['label'], fontsize=25)
 
         # Plot the center of the ellipse
-        axs[1,0].plot(center[0], center[1], 'o', alpha=0.0001)
+        axs[1,0].plot(center[0], center[1], 'o',alpha=0.0001)
         axs[1,0].axvline(center[0], ls='--', color='lightgray')
         axs[1,0].axhline(center[1], ls='--', color='lightgray')
 
@@ -122,11 +122,11 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
         x = np.linspace(mu - 10 * sig, mu + 10 * sig, 100)
 
     # Modify properties of the ellipse
-    ellip.set_edgecolor(color + [1.0])
+    ellip.set_edgecolor(color+[1.0])
     ellip.set_linewidth(2) 
     ellip.set_facecolor('none')
     if shade:
-        ellip.set_facecolor(color + [0.3])
+        ellip.set_facecolor(color+[0.3])
     if dash:
         ellip.set_linestyle('dashed')
 
@@ -140,7 +140,8 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
     y = norm.pdf(x, mu, sig)
     axs[0,0].plot(x, y,color=color,label=label)
     axs[0,0].fill_between(x,y, where=(x >= mu - sig) & (x <= mu + sig), color=color, alpha=0.2) # shade region within 1 sigma
-    
+    axs[0, 0].set_ylim(0, 2.75 * y.max())
+
     # plot Gaussian histogram to the right of ellipse for p2
     mu = center[1]
     sig = stdv[1]
@@ -148,6 +149,7 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
     y = norm.pdf(x, mu, sig)
     axs[1,1].plot(x,norm.pdf(x, mu, sig),color=color)
     axs[1,1].fill_between(x,y, where=(x >= mu - sig) & (x <= mu + sig), color=color, alpha=0.2) # shade region within 1 sigma
+    axs[1, 1].set_ylim(0, 2.75 * y.max())
 
     # remove axis labels from hist plots
     axs[0, 0].set_xticks([])
@@ -158,4 +160,4 @@ def plot_ellipse(p1, p2, fisher_matrix, cosmo_params, axs=None, color=None, labe
     # legend
     axs[0, 0].legend(loc='upper right',bbox_to_anchor=(2, 1), borderaxespad=0., fontsize=16)
 
-    return axs
+    return fig, axs
