@@ -1,7 +1,7 @@
 # fisher_to_contour
 Make a contour plot from fisher matrices (as seen in [Grewal et al 2024](https://arxiv.org/pdf/2402.13912.pdf))
 
-<img src="contour_plot_Om_s8.png" alt="Contour Plot" width="600" height="600">
+<img src="contour_plot_Om_s8.pdf" alt="Contour Plot" width="600" height="600">
 
 ## Installation
 
